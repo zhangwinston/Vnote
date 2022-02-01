@@ -59,7 +59,7 @@ QToolBar *ToolBarHelper::setupFileToolBar(MainWindow *p_win, QToolBar *p_toolBar
 
         auto toolBtn = dynamic_cast<QToolButton *>(tb->widgetForAction(act));
         Q_ASSERT(toolBtn);
-        toolBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+//        toolBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         toolBtn->setPopupMode(QToolButton::InstantPopup);
         toolBtn->setProperty(PropertyDefs::c_toolButtonWithoutMenuIndicator, true);
 
@@ -113,7 +113,7 @@ QToolBar *ToolBarHelper::setupFileToolBar(MainWindow *p_win, QToolBar *p_toolBar
     // New Note.
     {
         auto newBtn = WidgetsFactory::createToolButton(tb);
-        newBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+//        newBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
         // Popup menu.
         auto newMenu = WidgetsFactory::createMenu(tb);

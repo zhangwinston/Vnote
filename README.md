@@ -1,6 +1,23 @@
 # VNote
 ![CI-Windows](https://github.com/vnotex/vnote/workflows/CI-Windows/badge.svg) ![CI-Linux](https://github.com/vnotex/vnote/workflows/CI-Linux/badge.svg) ![CI-MacOS](https://github.com/vnotex/vnote/workflows/CI-MacOS/badge.svg)
 
+个人定制版本主要改动：
+1. Vnote配置数据的两个文件夹缺省保存在应用程序当前目录下。
+
+2. 编辑器的文本之间的行间距拉大，并可配置调整。
+  文本行间距，缺省为0.5；代码行间距，缺省为0.2。  
+
+3. Vnote界面图标和界面的微调。
+  基于开源免费svg调整了界面图标。  
+
+4. 当前tab页文件名加粗体字体显示，其他tab页正常字体。  
+
+5. 部分防盗链网页图片下载功能。
+  在文档头部手工填写referer信息，例如：@@https://cloud.tencent.com/，即可下载相关图片。  
+
+6. 修正片段插入、界面导航等快捷键在中文输入法状态下的问题
+
+
 [简体中文](README_zh_CN.md)
 
 A pleasant note-taking platform.

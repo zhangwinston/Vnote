@@ -278,6 +278,7 @@ namespace vnotex
             if (!snippetName.isEmpty()) {
                 applySnippet(p_win, snippetName);
             }
+
         }
 
         template <typename _ViewWindow>
