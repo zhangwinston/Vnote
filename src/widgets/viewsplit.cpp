@@ -26,6 +26,9 @@
 #include "propertydefs.h"
 #include "fileopenparameters.h"
 
+#include "mainwindow.h"
+#include "notebookexplorer.h"
+
 using namespace vnotex;
 
 QIcon ViewSplit::s_windowListIcon;
@@ -184,8 +187,21 @@ bool ViewSplit::eventFilter(QObject *p_object, QEvent *p_event)
             if (mouseEve->button() == Qt::MiddleButton) {
                 int idx = tabBar()->tabAt(mouseEve->pos());
                 closeTab(idx);
+                return true;
             }
         }
+//add by zhangyw
+        if(p_event->type()==QEvent::MouseButtonDblClick &&p_event->type()==QEvent::MouseButtonDblClick){
+             auto mouseEve = static_cast<QMouseEvent *>(p_event);
+            if (mouseEve->button() == Qt::LeftButton) {
+                int idx = tabBar()->tabAt(mouseEve->pos());
+                if(idx==-1){ // no tab covers position
+                    emit VNoteX::getInst().newNoteQuicklyRequested();
+                    return true;
+                }
+            }
+        }
+//add by zhangyw
     }
 
     return QTabWidget::eventFilter(p_object, p_event);
@@ -1071,4 +1087,34 @@ void ViewSplit::activateNextTab(bool p_backward)
     }
 
     setCurrentViewWindow(idx);
+}
+
+void TabBar::paintEvent(QPaintEvent *p_event)
+{
+    QStylePainter painter(this);
+    QStyleOptionTab opt;
+    QFont font=this->font();
+
+    for(int i = 0;i < count();i++)
+    {
+        initStyleOption(&opt,i);
+        painter.drawControl(QStyle::CE_TabBarTabShape, opt);
+        if(QStyle::State_Selected & opt.state)
+        {
+            ViewArea *va=VNoteX::getInst().getMainWindow()->getViewArea();
+
+            painter.save();
+            font.setBold( true );
+            if(va->getCurrentViewSplit()!=this->parent())
+            {
+                font.setItalic(true);
+            }
+            painter.setFont(font);
+            painter.drawControl(QStyle::CE_TabBarTabLabel,opt);
+            painter.restore();
+            continue;
+        }
+        else
+            painter.drawControl(QStyle::CE_TabBarTabLabel,opt);
+   }
 }

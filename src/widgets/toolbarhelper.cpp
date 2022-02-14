@@ -11,6 +11,8 @@
 #include <QFileDialog>
 #include <QWidgetAction>
 
+#include <QShortcut>
+
 #include "mainwindow.h"
 #include <core/vnotex.h>
 #include "widgetsfactory.h"
@@ -120,17 +122,30 @@ QToolBar *ToolBarHelper::setupFileToolBar(MainWindow *p_win, QToolBar *p_toolBar
         newBtn->setMenu(newMenu);
 
         // New note.
+        //modify by zhangyw create new note quickly default
         auto newNoteAct = newMenu->addAction(generateIcon("new_note.svg"),
                                              MainWindow::tr("New Note"),
                                              newMenu,
                                              []() {
-                                                 emit VNoteX::getInst().newNoteRequested();
+                                                 emit VNoteX::getInst().newNoteQuicklyRequested();
                                              });
         WidgetUtils::addActionShortcut(newNoteAct,
-                                       coreConfig.getShortcut(CoreConfig::Shortcut::NewNote));
+                                       coreConfig.getShortcut(CoreConfig::Shortcut::NewNoteQuickly));
         newBtn->setDefaultAction(newNoteAct);
         // To hide the shortcut text shown in button.
         newBtn->setText(MainWindow::tr("New Note"));
+
+        //add by zhangyw when you want create from dialog normally, select template etc
+        {
+            auto shortcut = WidgetUtils::createShortcut(coreConfig.getShortcut(CoreConfig::Shortcut::NewNote), p_win, Qt::WindowShortcut);
+            if (shortcut) {
+                QObject::connect(shortcut, &QShortcut::activated,
+                        p_win, [p_win](){
+                                emit VNoteX::getInst().newNoteRequested();
+                        });
+            }
+        }
+        //add by zhangyw when you want create from dialog normally, select template etc
 
         // New folder.
         newMenu->addAction(generateIcon("new_folder.svg"),

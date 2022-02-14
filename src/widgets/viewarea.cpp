@@ -34,6 +34,7 @@
 #include "editors/plantumlhelper.h"
 #include "editors/graphvizhelper.h"
 #include <core/historymgr.h>
+#include "dialogs/notepropertiesdialog.h"
 
 using namespace vnotex;
 
@@ -296,6 +297,14 @@ void ViewArea::showSceneWidget()
     m_mainLayout->addWidget(m_sceneWidget);
 }
 
+void ViewArea::mouseDoubleClickEvent(QMouseEvent *p_event)
+{
+    if(p_event->buttons() == Qt::LeftButton && m_sceneWidget != nullptr){
+        emit VNoteX::getInst().newNoteQuicklyRequested();
+    }
+}
+
+
 void ViewArea::hideSceneWidget()
 {
     Q_ASSERT(m_sceneWidget);
@@ -472,10 +481,29 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     // Get info before close.
     const auto session = p_win->saveSession();
     Notebook *notebook = nullptr;
+
+    //add by zhangyw
+    Node *node= nullptr;
+    QString firstline="";
+    //add by zhangyw
+
     if (p_win->getBuffer()) {
-        auto node = p_win->getBuffer()->getNode();
+        //auto node = p_win->getBuffer()->getNode();
+        node = p_win->getBuffer()->getNode();
         if (node) {
             notebook = node->getNotebook();
+
+            //add by zhangyw
+            auto content=p_win->getBuffer()->getContent();
+            QTextStream stream(&content);
+
+            int i=0;
+            while(firstline.length()<1 && stream.atEnd()==false && i<10)
+            {
+                firstline=stream.readLine(100);
+                i++;
+            }
+            //add by zhangyw
         }
     }
 
@@ -501,6 +529,22 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
         // Remove this split and workspace.
         removeViewSplit(split, true);
     }
+
+    //add by zhangyw for rename node
+    if(node->getCreatedTimeUtc().addDays(1)> QDateTime::currentDateTime()){
+        if(node->getName().startsWith(tr("note")))
+        {
+            QString preFileName=firstline.replace("#","",Qt::CaseSensitive).replace("\\","_",Qt::CaseSensitive).trimmed()+".md";
+            if(preFileName.length()<=3){ //contain ".md"
+                NotePropertiesDialog dialog(node,this->parentWidget());
+                dialog.exec();
+            }else{
+                NotePropertiesDialog dialog(node,this->parentWidget(),preFileName);
+                dialog.exec();
+            }
+        }
+    }
+    //add by zhangyw for rename node
 
     return true;
 }

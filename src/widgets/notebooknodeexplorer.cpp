@@ -1068,7 +1068,7 @@ QAction *NotebookNodeExplorer::createAction(Action p_act, QObject *p_parent, boo
                           p_parent);
         connect(act, &QAction::triggered,
                 this, []() {
-                    emit VNoteX::getInst().newNoteRequested();
+                    emit VNoteX::getInst().newNoteQuicklyRequested();
                 });
         break;
 
@@ -1088,62 +1088,85 @@ QAction *NotebookNodeExplorer::createAction(Action p_act, QObject *p_parent, boo
                           p_parent);
         connect(act, &QAction::triggered,
                 this, [this, p_master]() {
-                    auto node = p_master ? getCurrentMasterNode() : getCurrentSlaveNode();
-                    if (checkInvalidNode(node)) {
-                        return;
+            auto node = p_master ? getCurrentMasterNode() : getCurrentSlaveNode();
+            if (checkInvalidNode(node)) {
+                return;
+            }
+//modify by zhangyw rename file prepare filename form content
+            int ret = QDialog::Rejected;
+            QString preFileName="";
+            if (node->hasContent()) {
+                if(node->getName().startsWith(tr("note")))
+                {
+                    QString firstline="";
+                    QFile file(node->fetchAbsolutePath());
+                    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+                    {
+                        QTextStream in(&file);
+                        int i=0;
+                        while(firstline.length()<1 && in.atEnd()==false && i<10){
+                            firstline=in.readLine(100);
+                            i++;
+                        }
+                        preFileName=firstline.replace("#","",Qt::CaseSensitive).replace("\\","_",Qt::CaseSensitive).trimmed()+".md";
                     }
+                }
 
-                    int ret = QDialog::Rejected;
-                    if (node->hasContent()) {
-                        NotePropertiesDialog dialog(node, VNoteX::getInst().getMainWindow());
-                        ret = dialog.exec();
-                    } else {
-                        FolderPropertiesDialog dialog(node, VNoteX::getInst().getMainWindow());
-                        ret = dialog.exec();
-                    }
-
-                    if (ret == QDialog::Accepted) {
-                        setCurrentNode(node);
-                    }
-                });
+                if(preFileName.length()>3){ //contain "*.md"
+                    NotePropertiesDialog dialog(node,this->parentWidget(),preFileName);
+                    ret = dialog.exec();
+                }
+                else{
+                    NotePropertiesDialog dialog(node, VNoteX::getInst().getMainWindow());
+                    ret = dialog.exec();
+                }
+            } else {
+                FolderPropertiesDialog dialog(node, VNoteX::getInst().getMainWindow());
+                ret = dialog.exec();
+            }
+//modify by zhangyw rename file prepare filename form content
+            if (ret == QDialog::Accepted) {
+                setCurrentNode(node);
+            }
+        });
         break;
 
     case Action::OpenLocation:
         act = new QAction(tr("Open Locat&ion"), p_parent);
         connect(act, &QAction::triggered,
                 this, [this]() {
-                    // Always use the master node no matter it is in master/slave explorer.
-                    auto item = m_masterExplorer->currentItem();
-                    if (!item) {
-                        if (m_notebook) {
-                            auto locationPath = m_notebook->getRootFolderAbsolutePath();
-                            WidgetUtils::openUrlByDesktop(QUrl::fromLocalFile(locationPath));
-                        }
-                        return;
-                    }
+            // Always use the master node no matter it is in master/slave explorer.
+            auto item = m_masterExplorer->currentItem();
+            if (!item) {
+                if (m_notebook) {
+                    auto locationPath = m_notebook->getRootFolderAbsolutePath();
+                    WidgetUtils::openUrlByDesktop(QUrl::fromLocalFile(locationPath));
+                }
+                return;
+            }
 
-                    auto data = getItemNodeData(item);
-                    Node *node = nullptr;
-                    if (data.isNode()) {
-                        node = data.getNode();
-                    } else {
-                        // Open the parent folder of the external node.
-                        node = data.getExternalNode()->getNode();
-                    }
+            auto data = getItemNodeData(item);
+            Node *node = nullptr;
+            if (data.isNode()) {
+                node = data.getNode();
+            } else {
+                // Open the parent folder of the external node.
+                node = data.getExternalNode()->getNode();
+            }
 
-                    if (checkInvalidNode(node)) {
-                        return;
-                    }
+            if (checkInvalidNode(node)) {
+                return;
+            }
 
-                    auto locationPath = node->fetchAbsolutePath();
-                    if (!node->isContainer()) {
-                        locationPath = PathUtils::parentDirPath(locationPath);
-                    }
+            auto locationPath = node->fetchAbsolutePath();
+            if (!node->isContainer()) {
+                locationPath = PathUtils::parentDirPath(locationPath);
+            }
 
-                    if (!locationPath.isEmpty()) {
-                        WidgetUtils::openUrlByDesktop(QUrl::fromLocalFile(locationPath));
-                    }
-                });
+            if (!locationPath.isEmpty()) {
+                WidgetUtils::openUrlByDesktop(QUrl::fromLocalFile(locationPath));
+            }
+        });
         break;
 
     case Action::CopyPath:

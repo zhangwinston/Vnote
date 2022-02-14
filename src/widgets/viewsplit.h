@@ -27,29 +27,9 @@ namespace vnotex
         }
 
     protected:
-        void paintEvent(QPaintEvent *){
 
-            QStylePainter painter(this);
-            QStyleOptionTab opt;
-            QFont font=this->font();
+        void paintEvent(QPaintEvent *p_event) Q_DECL_OVERRIDE;
 
-            for(int i = 0;i < count();i++)
-            {
-                initStyleOption(&opt,i);
-                painter.drawControl(QStyle::CE_TabBarTabShape, opt);
-                if(QStyle::State_Selected & opt.state)
-                {
-                    painter.save();
-                    font.setBold( true );
-                    painter.setFont(font);
-                    painter.drawControl(QStyle::CE_TabBarTabLabel,opt);
-                    painter.restore();
-                    continue;
-                }
-                else
-                    painter.drawControl(QStyle::CE_TabBarTabLabel,opt);
-           }
-        }
     };
 
     class TabWidget : public QTabWidget

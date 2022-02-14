@@ -118,6 +118,24 @@ void NewNoteDialog::acceptedButtonClicked()
     }
 }
 
+// add by zhangyw for create note quickly without dialog
+bool NewNoteDialog::quickNewNote()
+{
+    s_lastTemplate = m_templateComboBox->currentData().toString();
+
+    {
+        auto fileType = FileTypeHelper::getInst().getFileTypeByName(m_infoWidget->getFileType()).m_type;
+        ConfigMgr::getInst().getWidgetConfig().setNewNoteDefaultFileType(static_cast<int>(fileType));
+    }
+
+    if (validateInputs() && newNote())
+    {
+        return true;
+    }
+    return false;
+}
+// add by zhangyw for create note quickly without dialog
+
 bool NewNoteDialog::newNote()
 {
     m_newNode.clear();

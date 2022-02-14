@@ -70,6 +70,7 @@ namespace vnotex
         void openFiles(const QStringList &p_files);
 
         LocationList *getLocationList() const;
+        NotebookExplorer *getNotebookExplorer() const;
 
         void setLocationListVisible(bool p_visible);
 
@@ -90,6 +91,8 @@ namespace vnotex
 
     protected:
         void closeEvent(QCloseEvent *p_event) Q_DECL_OVERRIDE;
+
+//        void mouseDoubleClickEvent(QMouseEvent  *p_event) Q_DECL_OVERRIDE;
 
         void changeEvent(QEvent *p_event) Q_DECL_OVERRIDE;
 

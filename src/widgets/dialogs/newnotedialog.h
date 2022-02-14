@@ -21,6 +21,8 @@ namespace vnotex
 
         const QSharedPointer<Node> &getNewNode() const;
 
+        bool quickNewNote();
+
     protected:
         void acceptedButtonClicked() Q_DECL_OVERRIDE;
 
