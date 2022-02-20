@@ -534,7 +534,7 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     if(node->getCreatedTimeUtc().addDays(1)> QDateTime::currentDateTime()){
         if(node->getName().startsWith(tr("note")))
         {
-            QString preFileName=firstline.replace("#","",Qt::CaseSensitive).replace("\\","_",Qt::CaseSensitive).trimmed()+".md";
+            QString preFileName=firstline.replace(QRegExp("[#\?\\*:/,.]")," ").simplified()+".md";
             if(preFileName.length()<=3){ //contain ".md"
                 NotePropertiesDialog dialog(node,this->parentWidget());
                 dialog.exec();

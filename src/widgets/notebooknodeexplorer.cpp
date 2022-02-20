@@ -1108,7 +1108,7 @@ QAction *NotebookNodeExplorer::createAction(Action p_act, QObject *p_parent, boo
                             firstline=in.readLine(100);
                             i++;
                         }
-                        preFileName=firstline.replace("#","",Qt::CaseSensitive).replace("\\","_",Qt::CaseSensitive).trimmed()+".md";
+                        QString preFileName=firstline.replace(QRegExp("[#\?\\*:/,.]")," ").simplified()+".md";
                     }
                 }
 

@@ -1089,6 +1089,7 @@ void ViewSplit::activateNextTab(bool p_backward)
     setCurrentViewWindow(idx);
 }
 
+//add by zhangyw bold the current tab title
 void TabBar::paintEvent(QPaintEvent *p_event)
 {
     QStylePainter painter(this);
@@ -1118,3 +1119,4 @@ void TabBar::paintEvent(QPaintEvent *p_event)
             painter.drawControl(QStyle::CE_TabBarTabLabel,opt);
    }
 }
+//add by zhangyw bold the current tab title
