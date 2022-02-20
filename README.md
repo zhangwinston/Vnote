@@ -1,6 +1,8 @@
 # VNote
 ![CI-Windows](https://github.com/vnotex/vnote/workflows/CI-Windows/badge.svg) ![CI-Linux](https://github.com/vnotex/vnote/workflows/CI-Linux/badge.svg) ![CI-MacOS](https://github.com/vnotex/vnote/workflows/CI-MacOS/badge.svg)
 
+![VNote-modify](pics/modify.png)
+
 个人定制版本主要改动：
 1. Vnote配置数据的两个文件夹缺省保存在应用程序当前目录下。
 
