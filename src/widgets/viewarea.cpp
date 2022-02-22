@@ -479,7 +479,7 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     setCurrentViewWindow(p_win);
 
     // Get info before close.
-    const auto session = p_win->saveSession();
+    auto session = p_win->saveSession();
     Notebook *notebook = nullptr;
 
     //add by zhangyw
@@ -512,7 +512,7 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     }
 
     // Update history.
-    updateHistory(session, notebook);
+    //updateHistory(session, notebook);
 
     // Remove the status widget.
     if (m_currentStatusWidget && p_win == getCurrentViewWindow()) {
@@ -537,13 +537,19 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
             QString preFileName=firstline.replace(QRegExp("[#\?\\*:/,.]")," ").simplified()+".md";
             if(preFileName.length()<=3){ //contain ".md"
                 NotePropertiesDialog dialog(node,this->parentWidget());
-                dialog.exec();
+                if (dialog.exec() == QDialog::Accepted) {
+                    session.m_bufferPath=node->fetchAbsolutePath();
+                }
             }else{
                 NotePropertiesDialog dialog(node,this->parentWidget(),preFileName);
-                dialog.exec();
+                if (dialog.exec() == QDialog::Accepted) {
+                    session.m_bufferPath=node->fetchAbsolutePath();
+                }
             }
         }
     }
+
+    updateHistory(session, notebook);
     //add by zhangyw for rename node
 
     return true;
