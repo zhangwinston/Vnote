@@ -136,13 +136,13 @@ int main(int argc, char *argv[])
     // Init logger after app info is set.
     Logger::init(cmdOptions.m_verbose);
 
-    qInfo() << QString("%1 (v%2) started at %3 (%4)").arg(ConfigMgr::c_appName,
-                                                          app.applicationVersion(),
-                                                          QDateTime::currentDateTime().toString(),
-                                                          QSysInfo::productType());
+//    qInfo() << QString("%1 (v%2) started at %3 (%4)").arg(ConfigMgr::c_appName,
+//                                                          app.applicationVersion(),
+//                                                          QDateTime::currentDateTime().toString(),
+//                                                          QSysInfo::productType());
 
-    qInfo() << "OpenSSL build version:" << QSslSocket::sslLibraryBuildVersionString()
-            << "link version:" << QSslSocket::sslLibraryVersionString();
+//    qInfo() << "OpenSSL build version:" << QSslSocket::sslLibraryBuildVersionString()
+//            << "link version:" << QSslSocket::sslLibraryVersionString();
 
     if (QSslSocket::sslLibraryBuildVersionNumber() != QSslSocket::sslLibraryVersionNumber()) {
         qWarning() << "versions of the built and linked OpenSSL mismatch, network may not work";
@@ -201,7 +201,7 @@ void loadTranslators(QApplication &p_app)
     }
 
     QLocale locale;
-    qInfo() << "locale:" << locale.name();
+//    qInfo() << "locale:" << locale.name();
 
     const QString resourceTranslationFolder(QStringLiteral(":/vnotex/data/core/translations"));
     const QString envTranslationFolder(QStringLiteral("translations"));
