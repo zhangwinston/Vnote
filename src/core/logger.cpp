@@ -78,7 +78,7 @@ void Logger::log(QtMsgType p_type, const QMessageLogContext &p_context, const QS
 
 #if defined(QT_NO_DEBUG)
     QTextStream stream(&s_file);
-    stream <<QDateTime::currentDateTime().toString("yyMMdd HH:mm:ss:zzz ")<< header << (QString("(%1:%2) ").arg(fileName).arg(p_context.line))
+    stream << header << (QString("(%1:%2) ").arg(fileName).arg(p_context.line))
            << localMsg << "\n";
 
     if (p_type == QtFatalMsg) {
