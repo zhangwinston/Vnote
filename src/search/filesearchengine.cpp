@@ -1,15 +1,15 @@
 #include "filesearchengine.h"
 
 #include <QFile>
-#include <QMimeDatabase>
 #include <QDebug>
 
 #include "searchresultitem.h"
+#include <utils/fileutils.h>
 
 using namespace vnotex;
 
 FileSearchEngineWorker::FileSearchEngineWorker(QObject *p_parent)
-    : QThread(p_parent)
+    : AsyncWorker(p_parent)
 {
 }
 
@@ -22,21 +22,10 @@ void FileSearchEngineWorker::setData(const QVector<SearchSecondPhaseItem> &p_ite
     m_token = p_token;
 }
 
-void FileSearchEngineWorker::stop()
-{
-    m_askedToStop.store(1);
-}
-
-bool FileSearchEngineWorker::isAskedToStop() const
-{
-    return m_askedToStop.load() == 1;
-}
-
 void FileSearchEngineWorker::run()
 {
     const int c_batchSize = 100;
 
-    QMimeDatabase mimeDatabase;
     m_state = SearchState::Busy;
 
     m_results.clear();
@@ -47,8 +36,7 @@ void FileSearchEngineWorker::run()
             break;
         }
 
-        const QMimeType mimeType = mimeDatabase.mimeTypeForFile(item.m_filePath);
-        if (mimeType.isValid() && !mimeType.inherits(QStringLiteral("text/plain"))) {
+        if (!FileUtils::isText(item.m_filePath)) {
             appendError(tr("Skip binary file (%1)").arg(item.m_filePath));
             continue;
         }
