@@ -1,6 +1,6 @@
 lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5 and above")
 
-equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12): error("requires Qt 5.12 and above")
+equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 15): error("requires Qt 5.15 and above")
 
 QT += core gui widgets webenginewidgets webchannel network svg printsupport
 QT += sql
@@ -61,6 +61,8 @@ include($$PWD/task/task.pri)
 include($$PWD/core/core.pri)
 
 include($$PWD/widgets/widgets.pri)
+
+include($$PWD/unitedentry/unitedentry.pri)
 
 RESOURCES += \
     $$PWD/data/core/core.qrc
