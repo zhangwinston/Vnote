@@ -70,6 +70,9 @@ namespace vnotex
 
         const QString &getPlantUmlCommand() const;
 
+        const QString &getPlantUmlWebService() const;
+        void setPlantUmlWebService(const QString &p_service);
+
         bool getWebGraphviz() const;
         void setWebGraphviz(bool p_enabled);
 
@@ -151,6 +154,9 @@ namespace vnotex
         EditViewMode getEditViewMode() const;
         void setEditViewMode(EditViewMode p_mode);
 
+        bool getRichPasteByDefaultEnabled() const;
+        void setRichPasteByDefaultEnabled(bool p_enabled);
+
     private:
         friend class MainConfig;
 
@@ -187,6 +193,9 @@ namespace vnotex
         // Command to render PlantUml. If set, will ignore m_plantUmlJar.
         // %1: the format to render in.
         QString m_plantUmlCommand;
+
+        // PlantUml Web service to override that in plantuml.js file.
+        QString m_plantUmlWebService;
 
         bool m_webGraphviz = true;
 
@@ -266,6 +275,8 @@ namespace vnotex
 
         // View mode in edit mode.
         EditViewMode m_editViewMode = EditViewMode::EditOnly;
+
+        bool m_richPasteByDefaultEnabled = true;
     };
 }
 

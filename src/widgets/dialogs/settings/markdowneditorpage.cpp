@@ -104,6 +104,8 @@ void MarkdownEditorPage::loadInternal()
 
     m_plantUmlJarFileInput->setText(markdownConfig.getPlantUmlJar());
 
+    m_plantUmlWebServiceLineEdit->setText(markdownConfig.getPlantUmlWebService());
+
     {
         int idx = m_graphvizModeComboBox->findData(markdownConfig.getWebGraphviz() ? 0 : 1);
         m_graphvizModeComboBox->setCurrentIndex(idx);
@@ -122,6 +124,8 @@ void MarkdownEditorPage::loadInternal()
             m_editorOverriddenFontFamilyComboBox->setCurrentFont(font);
         }
     }
+
+    m_richPasteByDefaultCheckBox->setChecked(markdownConfig.getRichPasteByDefaultEnabled());
 }
 
 bool MarkdownEditorPage::saveInternal()
@@ -187,6 +191,8 @@ bool MarkdownEditorPage::saveInternal()
 
     markdownConfig.setPlantUmlJar(m_plantUmlJarFileInput->text());
 
+    markdownConfig.setPlantUmlWebService(m_plantUmlWebServiceLineEdit->text());
+
     markdownConfig.setWebGraphviz(m_graphvizModeComboBox->currentData().toInt() == 0);
 
     markdownConfig.setGraphvizExe(m_graphvizFileInput->text());
@@ -197,6 +203,8 @@ bool MarkdownEditorPage::saveInternal()
         bool checked = m_editorOverriddenFontFamilyCheckBox->isChecked();
         markdownConfig.setEditorOverriddenFontFamily(checked ? m_editorOverriddenFontFamilyComboBox->currentFont().family() : QString());
     }
+
+    markdownConfig.setRichPasteByDefaultEnabled(m_richPasteByDefaultCheckBox->isChecked());
 
     EditorPage::notifyEditorConfigChange();
 
@@ -402,6 +410,16 @@ QGroupBox *MarkdownEditorPage::setupEditGroup()
         layout->addRow(fontLayout);
     }
 
+    {
+        const QString label(tr("Use Rich Paste by default"));
+        m_richPasteByDefaultCheckBox = WidgetsFactory::createCheckBox(label, box);
+        m_richPasteByDefaultCheckBox->setToolTip(tr("Use Rich Paste by default when pasting text"));
+        layout->addRow(m_richPasteByDefaultCheckBox);
+        addSearchItem(label, m_richPasteByDefaultCheckBox->toolTip(), m_richPasteByDefaultCheckBox);
+        connect(m_richPasteByDefaultCheckBox, &QCheckBox::stateChanged,
+                this, &MarkdownEditorPage::pageIsChanged);
+    }
+
     return box;
 }
 
@@ -454,9 +472,9 @@ QGroupBox *MarkdownEditorPage::setupGeneralGroup()
 
     {
         m_plantUmlModeComboBox = WidgetsFactory::createComboBox(box);
-        m_plantUmlModeComboBox->setToolTip(tr("Use online service or local JAR file to render PlantUml graphs"));
+        m_plantUmlModeComboBox->setToolTip(tr("Use Web service or local JAR file to render PlantUml graphs"));
 
-        m_plantUmlModeComboBox->addItem(tr("Online Service"), 0);
+        m_plantUmlModeComboBox->addItem(tr("Web Service"), 0);
         m_plantUmlModeComboBox->addItem(tr("Local JAR"), 1);
 
         const QString label(tr("PlantUml:"));
@@ -513,10 +531,21 @@ QGroupBox *MarkdownEditorPage::setupGeneralGroup()
     }
 
     {
-        m_graphvizModeComboBox = WidgetsFactory::createComboBox(box);
-        m_graphvizModeComboBox->setToolTip(tr("Use online service or local executable file to render Graphviz graphs"));
+        m_plantUmlWebServiceLineEdit = WidgetsFactory::createLineEdit(box);
+        m_plantUmlWebServiceLineEdit->setToolTip(tr("Override the Web service used to render PlantUml graphs"));
 
-        m_graphvizModeComboBox->addItem(tr("Online Service"), 0);
+        const QString label(tr("PlantUml Web service:"));
+        layout->addRow(label, m_plantUmlWebServiceLineEdit);
+        addSearchItem(label, m_plantUmlWebServiceLineEdit->toolTip(), m_plantUmlWebServiceLineEdit);
+        connect(m_plantUmlWebServiceLineEdit, &QLineEdit::textChanged,
+                this, &MarkdownEditorPage::pageIsChanged);
+    }
+
+    {
+        m_graphvizModeComboBox = WidgetsFactory::createComboBox(box);
+        m_graphvizModeComboBox->setToolTip(tr("Use Web service or local executable file to render Graphviz graphs"));
+
+        m_graphvizModeComboBox->addItem(tr("Web Service"), 0);
         m_graphvizModeComboBox->addItem(tr("Local Executable"), 1);
 
         const QString label(tr("Graphviz:"));

@@ -1001,6 +1001,17 @@ void ViewWindow::setupShortcuts()
                     });
         }
     }
+
+    // ClearHighlights.
+    {
+        auto shortcut = WidgetUtils::createShortcut(editorConfig.getShortcut(EditorConfig::ClearHighlights), this, Qt::WidgetWithChildrenShortcut);
+        if (shortcut) {
+            connect(shortcut, &QShortcut::activated,
+                    this, [this]() {
+                        clearHighlights();
+                    });
+        }
+    }
 }
 
 void ViewWindow::wheelEvent(QWheelEvent *p_event)
@@ -1350,4 +1361,8 @@ void ViewWindow::updateViewModeMenu(QMenu *p_menu)
 void ViewWindow::print()
 {
     qWarning() << "print is not supported";
+}
+
+void ViewWindow::clearHighlights()
+{
 }

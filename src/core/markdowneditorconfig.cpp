@@ -35,6 +35,8 @@ void MarkdownEditorConfig::init(const QJsonObject &p_app, const QJsonObject &p_u
 
     m_plantUmlCommand = READSTR(QStringLiteral("plantuml_command"));
 
+    m_plantUmlWebService = READSTR(QStringLiteral("plantuml_web_service"));
+
     m_webGraphviz = READBOOL(QStringLiteral("web_graphviz"));
 
     m_graphvizExe = READSTR(QStringLiteral("graphviz_exe"));
@@ -81,6 +83,8 @@ void MarkdownEditorConfig::init(const QJsonObject &p_app, const QJsonObject &p_u
     }
 
     m_editViewMode = stringToEditViewMode(READSTR(QStringLiteral("edit_view_mode")));
+
+    m_richPasteByDefaultEnabled = READBOOL(QStringLiteral("rich_paste_by_default"));
 }
 
 QJsonObject MarkdownEditorConfig::toJson() const
@@ -91,6 +95,7 @@ QJsonObject MarkdownEditorConfig::toJson() const
     obj[QStringLiteral("web_plantuml")] = m_webPlantUml;
     obj[QStringLiteral("plantuml_jar")] = m_plantUmlJar;
     obj[QStringLiteral("plantuml_command")] = m_plantUmlCommand;
+    obj[QStringLiteral("plantuml_web_service")] = m_plantUmlWebService;
     obj[QStringLiteral("web_graphviz")] = m_webGraphviz;
     obj[QStringLiteral("graphviz_exe")] = m_graphvizExe;
     obj[QStringLiteral("mathjax_script")] = m_mathJaxScript;
@@ -137,6 +142,8 @@ QJsonObject MarkdownEditorConfig::toJson() const
     }
 
     obj[QStringLiteral("edit_view_mode")] = editViewModeToString(m_editViewMode);
+
+    obj[QStringLiteral("rich_paste_by_default")] = m_richPasteByDefaultEnabled;
 
     return obj;
 }
@@ -241,6 +248,16 @@ const QString &MarkdownEditorConfig::getPlantUmlCommand() const
     return m_plantUmlCommand;
 }
 
+const QString &MarkdownEditorConfig::getPlantUmlWebService() const
+{
+    return m_plantUmlWebService;
+}
+
+void MarkdownEditorConfig::setPlantUmlWebService(const QString &p_service)
+{
+    updateConfig(m_plantUmlWebService, p_service, this);
+}
+
 bool MarkdownEditorConfig::getWebGraphviz() const
 {
     return m_webGraphviz;
@@ -283,9 +300,7 @@ bool MarkdownEditorConfig::getConfirmBeforeClearObsoleteImages() const
 
 void MarkdownEditorConfig::setConfirmBeforeClearObsoleteImages(bool p_confirm)
 {
-    updateConfig(m_confirmBeforeClearObsoleteImages,
-                 p_confirm,
-                 this);
+    updateConfig(m_confirmBeforeClearObsoleteImages, p_confirm, this);
 }
 
 bool MarkdownEditorConfig::getInsertFileNameAsTitle() const
@@ -604,4 +619,14 @@ MarkdownEditorConfig::EditViewMode MarkdownEditorConfig::getEditViewMode() const
 void MarkdownEditorConfig::setEditViewMode(EditViewMode p_mode)
 {
     updateConfig(m_editViewMode, p_mode, this);
+}
+
+bool MarkdownEditorConfig::getRichPasteByDefaultEnabled() const
+{
+    return m_richPasteByDefaultEnabled;
+}
+
+void MarkdownEditorConfig::setRichPasteByDefaultEnabled(bool p_enabled)
+{
+    updateConfig(m_richPasteByDefaultEnabled, p_enabled, this);
 }

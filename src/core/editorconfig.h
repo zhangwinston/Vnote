@@ -53,7 +53,7 @@ namespace vnotex
             TypeTable,
             TypeMark,
             Outline,
-            RichPaste,
+            AltPaste,
             FindAndReplace,
             FindNext,
             FindPrevious,
@@ -61,6 +61,7 @@ namespace vnotex
             Tag,
             Debug,
             Print,
+            ClearHighlights,
             MaxShortcut
         };
         Q_ENUM(Shortcut)
