@@ -72,7 +72,6 @@ namespace vnotex
         void openFiles(const QStringList &p_files);
 
         LocationList *getLocationList() const;
-        NotebookExplorer *getNotebookExplorer() const;
 
         void setLocationListVisible(bool p_visible);
 
