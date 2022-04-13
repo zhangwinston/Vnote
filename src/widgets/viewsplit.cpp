@@ -339,7 +339,7 @@ int ViewSplit::getViewWindowCount() const
 
 void ViewSplit::addViewWindow(ViewWindow *p_win)
 {
-    int idx = addTab(p_win, p_win->getIcon(), p_win->getName());
+    int idx = addTab(p_win, p_win->getIcon(), "  "+p_win->getName()+"  ");
     setTabToolTip(idx, p_win->getTitle());
 
     p_win->setViewSplit(this);
@@ -363,7 +363,7 @@ void ViewSplit::addViewWindow(ViewWindow *p_win)
                 auto win = dynamic_cast<ViewWindow *>(sender());
                 int idx = indexOf(win);
                 Q_ASSERT(idx != -1);
-                setTabText(idx, win->getName());
+                setTabText(idx, "  "+win->getName()+"  ");
             });
 }
 
