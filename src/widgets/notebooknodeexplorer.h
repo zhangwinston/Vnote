@@ -176,6 +176,8 @@ namespace vnotex
 
         void setupUI();
 
+        bool isActionFromMaster() const;
+
         void setupShortcuts();
 
         void setupMasterExplorer(QWidget *p_parent = nullptr);
@@ -298,6 +300,8 @@ namespace vnotex
         QStringList getSelectedNodesPath(bool p_master) const;
 
         void openSelectedNodesWithProgram(const QString &p_name, bool p_master);
+
+        void openCurrentNodeProperties(bool p_master);
 
         bool belongsToMasterExplorer(const Node *p_node) const;
 

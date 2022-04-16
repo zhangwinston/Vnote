@@ -70,6 +70,9 @@ namespace vnotex
             MoveOneSplitRight,
             OpenLastClosedFile,
             UnitedEntry,
+            Copy,
+            Paste,
+            Properties,
             MaxShortcut
         };
         Q_ENUM(Shortcut)
