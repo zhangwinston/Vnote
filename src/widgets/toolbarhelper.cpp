@@ -149,12 +149,14 @@ QToolBar *ToolBarHelper::setupFileToolBar(MainWindow *p_win, QToolBar *p_toolBar
         //add by zhangyw when you want create from dialog normally, select template etc
 
         // New folder.
-        newMenu->addAction(generateIcon("new_folder.svg"),
-                           MainWindow::tr("New Folder"),
-                           newMenu,
-                           []() {
-                               emit VNoteX::getInst().newFolderRequested();
-                           });
+        auto newFolderAct = newMenu->addAction(generateIcon("new_folder.svg"),
+                                               MainWindow::tr("New Folder"),
+                                               newMenu,
+                                               []() {
+                                                   emit VNoteX::getInst().newFolderRequested();
+                                               });
+        WidgetUtils::addActionShortcut(newFolderAct,
+                                       coreConfig.getShortcut(CoreConfig::Shortcut::NewFolder));
 
         newMenu->addSeparator();
 

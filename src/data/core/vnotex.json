@@ -15,6 +15,7 @@
             "Settings" : "Ctrl+Alt+P",
             "NewNote" : "Ctrl+Alt+N",
             "NewNoteQuickly" : "Ctrl+N",
+            "NewFolder" : "Ctrl+Alt+S",
             "CloseTab" : "Ctrl+G, X",
             "CloseOtherTabs" : "",
             "CloseTabsToTheRight" : "",
@@ -63,8 +64,10 @@
             "OpenLastClosedFile" : "Ctrl+Shift+T",
             "UnitedEntry" : "Ctrl+G, G",
             "Copy" : "Ctrl+C",
+            "Cut" : "Ctrl+X",
             "Paste" : "Ctrl+V",
-            "Properties" : "F2"
+            "Properties" : "F2",
+            "Global_WakeUp" : "Ctrl+Alt+U"
         },
         "file_type_suffixes" : [
             {
