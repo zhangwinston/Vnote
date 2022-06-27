@@ -1,4 +1,4 @@
-#include "viewarea.h"
+﻿#include "viewarea.h"
 
 #include <QShortcut>
 #include <QLabel>
@@ -538,7 +538,6 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     }
 
     //add by zhangyw for rename node
-    if(node->getCreatedTimeUtc().addDays(1)> QDateTime::currentDateTime()){
         if(node->getName().startsWith(tr("note")))
         {
             QString preFileName=firstline.replace(QRegExp("[#\?\\*:/,.]")," ").simplified()+".md";
@@ -554,7 +553,6 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
                 }
             }
         }
-    }
 
     updateHistory(session, notebook);
     //add by zhangyw for rename node
