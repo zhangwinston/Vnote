@@ -1,6 +1,6 @@
 {
     "metadata" : {
-        "revision" : 0,
+        "revision" : 1,
         "//comment" : "If there is a file named 'editor-highlight.theme' under theme folder, this value will be ignored.",
         "//comment" : "Otherwise, this value specify the theme name to use for syntax highlighting.",
         "editor-highlight-theme" : "Breeze Dark",
@@ -10,8 +10,7 @@
         "markdown-editor-highlight-theme" : "Markdown Breeze Dark",
         "display_name" : "Moonlight",
         "//comment" : "Display name for different locales",
-        "display_name_zh_CN" : "月夜",
-        "icon-monochrome": true
+        "display_name_zh_CN" : "月夜"
     },
     "palette" : {
         "bg1_1" : "#07080d",

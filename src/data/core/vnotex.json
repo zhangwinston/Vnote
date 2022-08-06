@@ -92,7 +92,7 @@
         ],
         "shortcut_leader_key" : "Ctrl+G",
         "toolbar_icon_size" : 18,
-        "docks_tabbar_icon_size" : 24,
+        "docks_tabbar_icon_size" : 18,
         "note_management" : {
             "external_node" : {
                 "//comment" : "Wildcard patterns of files and folders to exclude as external files",
@@ -492,12 +492,12 @@
         "//comment" : "Whether close the file before opening it with external program",
         "node_explorer_close_before_open_with_enabled" : true,
         "//comment" : "0 - combined/1 - separate_single/2 - separate_double",
-        "node_explorer_explore_mode" : 1,
+        "node_explorer_explore_mode" : 0,
         "search_panel_advanced_settings_visible" : true,
         "//comment" : "Docks to ignore when expanding content area of main window",
         "main_window_keep_docks_expanding_content_area": ["OutlineDock.vnotex"],
         "snippet_panel_builtin_snippets_visible" : true,
-        "tag_explorer_two_columns_enabled" : true,
+        "tag_explorer_two_columns_enabled" : false,
         "new_note_default_file_type" : 0,
         "united_entry_expand_all" : false
     }
