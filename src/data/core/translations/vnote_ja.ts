@@ -219,32 +219,32 @@
 <context>
     <name>vnotex::DockWidgetHelper</name>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="132"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="138"/>
         <source>Navigation</source>
         <translation type="unfinished">ナビゲーション</translation>
     </message>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="144"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="149"/>
         <source>Outline</source>
         <translation type="unfinished">アウトライン</translation>
     </message>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="156"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="160"/>
         <source>Console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="169"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="172"/>
         <source>Search</source>
         <translation type="unfinished">検索</translation>
     </message>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="181"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="183"/>
         <source>Snippets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="193"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="194"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
@@ -254,7 +254,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/dockwidgethelper.cpp" line="217"/>
+        <location filename="../../../widgets/dockwidgethelper.cpp" line="216"/>
         <source>Location List</source>
         <translation type="unfinished">ロケーションリスト</translation>
     </message>
@@ -1817,12 +1817,12 @@
         <translation>設定マネージャの初期化に失敗しました。すべてのファイルが正常かどうかを確認するか、アプリケーションを再インストールしてください。</translation>
     </message>
     <message>
-        <location filename="../../../widgets/mainwindow.cpp" line="794"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="799"/>
         <source>Failed to check for updates (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/mainwindow.cpp" line="796"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="801"/>
         <source>Updates available: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1847,25 +1847,25 @@
         <translation>%1はまだ実行中です。</translation>
     </message>
     <message>
-        <location filename="../../../widgets/mainwindow.cpp" line="574"/>
-        <location filename="../../../widgets/mainwindow.cpp" line="585"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="579"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="590"/>
         <source>Global</source>
         <translation>グローバル</translation>
     </message>
     <message>
-        <location filename="../../../widgets/mainwindow.cpp" line="689"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="694"/>
         <source>There is one export dialog running. Please close it first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../widgets/mainwindow.cpp" line="810"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="815"/>
         <source>Failed to load %n notebook(s).</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../../widgets/mainwindow.cpp" line="811"/>
+        <location filename="../../../widgets/mainwindow.cpp" line="816"/>
         <source>These notebooks may be moved or deleted. It is recommended to remove them from configuration and open them with the correct root folder path later.
 Remove them from the configuration?</source>
         <translation type="unfinished"></translation>
@@ -1877,7 +1877,7 @@ Remove them from the configuration?</source>
     </message>
     <message>
         <location filename="../../../widgets/systemtrayhelper.cpp" line="55"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="790"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="773"/>
         <source>Quit</source>
         <translation>終了</translation>
     </message>
@@ -1892,207 +1892,206 @@ Remove them from the configuration?</source>
         <translation>ノートブック</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="73"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="72"/>
         <source>New Notebook</source>
         <translation>新規ノートブック</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="81"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="79"/>
         <source>New Notebook From Folder</source>
         <translation>フォルダから新規ノートブック</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="128"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="137"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="123"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="132"/>
         <source>New Note</source>
         <translation>新規ノート</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="153"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="148"/>
         <source>New Folder</source>
         <translation>新規フォルダ</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="164"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="168"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="159"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="163"/>
         <source>Open File</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="197"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="192"/>
         <source>Import File</source>
         <translation>ファイルをインポート</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="204"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="199"/>
         <source>Import Folder</source>
         <translation>フォルダをインポート</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="91"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="88"/>
         <source>Open Other Notebooks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="99"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="95"/>
         <source>Open Legacy Notebooks Of VNote 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="214"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="209"/>
         <source>Export (Convert Format)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="230"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="268"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="225"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="263"/>
         <source>Quick Access</source>
         <translation>クイックアクセス</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="238"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="233"/>
         <source>Flash Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="245"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="240"/>
         <source>Please set the Flash Page location in the Settings dialog first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="246"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="241"/>
         <source>Flash Page is a temporary page for a flash of inspiration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="275"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="270"/>
         <source>Please pin files to Quick Access first.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="276"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="271"/>
         <source>Files could be pinned to Quick Access via context menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="277"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="272"/>
         <source>Quick Access could be managed in the Settings dialog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="361"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="356"/>
         <source>Add Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="367"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="362"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="302"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="297"/>
         <source>Task</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="683"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="601"/>
         <source>Menu</source>
         <translation type="unfinished">メニュー</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="733"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="716"/>
         <source>Home Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="739"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="722"/>
         <source>Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="753"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="736"/>
         <source>Contributors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="628"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="622"/>
         <source>Edit User Configuration File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="654"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="648"/>
         <source>Edit Markdown User Styles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="667"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="661"/>
         <source>Edit the user styles of Markdown editor read mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="501"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="494"/>
         <source>Quick Access Not Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="416"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="608"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="617"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="411"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="611"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="538"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="531"/>
         <source>Expand Content Area</source>
         <translation>コンテンツ領域の拡大</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="560"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="553"/>
         <source>Press %1 To Exit Full Screen</source>
         <translation>%1 を押して全画面表示を終了する</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="109"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="104"/>
         <source>Manage Notebooks</source>
         <translation type="unfinished">ノートブックの管理</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="187"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="182"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="568"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="561"/>
         <source>Stay on Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="580"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="573"/>
         <source>Windows</source>
         <translation>ウインドウ</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="637"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="631"/>
         <source>Open User Configuration Folder</source>
         <translation>ユーザー設定フォルダを開く</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="644"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="638"/>
         <source>Open Default Configuration Folder</source>
         <translation>既定の設定フォルダを開く</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="672"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="666"/>
         <source>Reset Main Window Layout</source>
         <translation>メインウィンドウのレイアウトをリセット</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="784"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="767"/>
         <source>Restart</source>
         <translation>再起動</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="731"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="714"/>
         <source>Help</source>
         <translation>ヘルプ</translation>
     </message>
@@ -2105,38 +2104,38 @@ Remove them from the configuration?</source>
         <translation type="vanished">[これは何]モードに入り、ヘルプ情報を表示する場所をクリックします</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="707"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="690"/>
         <source>Shortcuts Help</source>
         <translation>ショートカットヘルプ</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="719"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="702"/>
         <source>Markdown Guide</source>
         <translation>Markdown ガイド</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="692"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="675"/>
         <source>View Logs</source>
         <translation>ログの表示</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="745"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="728"/>
         <source>Feedback and Discussions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="776"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="759"/>
         <source>Check for Updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="759"/>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="765"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="742"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="748"/>
         <source>About</source>
         <translation>バージョン情報</translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="762"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="745"/>
         <source>&lt;h3&gt;%1&lt;/h3&gt;
 &lt;span&gt;%2&lt;/span&gt;
 </source>
@@ -2145,7 +2144,7 @@ Remove them from the configuration?</source>
 </translation>
     </message>
     <message>
-        <location filename="../../../widgets/toolbarhelper.cpp" line="768"/>
+        <location filename="../../../widgets/toolbarhelper.cpp" line="751"/>
         <source>About Qt</source>
         <translation>Qtについて</translation>
     </message>
@@ -2654,13 +2653,17 @@ Remove them from the configuration?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/dialogs/settings/markdowneditorpage.cpp" line="547"/>
-        <source>Use Web service or local executable file to render Graphviz graphs</source>
-        <translation type="unfinished"></translation>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../widgets/dialogs/settings/markdowneditorpage.cpp" line="609"/>
         <source>Override MathJax script:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../widgets/dialogs/settings/markdowneditorpage.cpp" line="547"/>
+        <source>Use Web service or local executable file to render Graphviz graphs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3844,23 +3847,6 @@ Remove them from the configuration?</source>
         <source>Add External Program</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../../widgets/notebooknodeexplorer.cpp" line="2363"/>
-        <source>Tags: %1
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../widgets/notebooknodeexplorer.cpp" line="2366"/>
-        <source>Created Time: %1
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../widgets/notebooknodeexplorer.cpp" line="2367"/>
-        <source>Modified Time: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>vnotex::NotebookSelector</name>
@@ -4956,8 +4942,8 @@ Description: %3</source>
 <context>
     <name>vnotex::ThemeMgr</name>
     <message>
-        <location filename="../../../core/thememgr.cpp" line="234"/>
-        <location filename="../../../core/thememgr.cpp" line="240"/>
+        <location filename="../../../core/thememgr.cpp" line="229"/>
+        <location filename="../../../core/thememgr.cpp" line="235"/>
         <source>[Theme] %1 %2</source>
         <translation>[テーマ] %1 %2</translation>
     </message>
@@ -5155,12 +5141,12 @@ Description: %3</source>
 <context>
     <name>vnotex::ViewArea</name>
     <message>
-        <location filename="../../../widgets/viewarea.cpp" line="542"/>
+        <location filename="../../../widgets/viewarea.cpp" line="541"/>
         <source>note</source>
         <translation type="unfinished">ノート</translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewarea.cpp" line="957"/>
+        <location filename="../../../widgets/viewarea.cpp" line="999"/>
         <source>No recently closed file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5248,66 +5234,76 @@ Description: %3</source>
     </message>
     <message>
         <location filename="../../../widgets/viewsplit.cpp" line="563"/>
+        <source>Close All Tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../widgets/viewsplit.cpp" line="573"/>
         <source>Close Other Tabs</source>
         <translation>他のタブを閉じる</translation>
     </message>
     <message>
         <location filename="../../../widgets/viewsplit.cpp" line="583"/>
+        <source>Close Tabs To The Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../widgets/viewsplit.cpp" line="593"/>
         <source>Close Tabs To The Right</source>
         <translation>右側のタブを閉じる</translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="597"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="604"/>
         <source>Auto Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="598"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="605"/>
         <source>Reload file from disk automatically if it is changed outside</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="616"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="623"/>
         <source>Copy Path</source>
         <translation>パスをコピー</translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="622"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="629"/>
         <source>Copied path: %1</source>
         <translation>コピーされたファイルパス: %1</translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="627"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="634"/>
         <source>Open Location</source>
         <translation>場所を開く</translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="639"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="646"/>
         <source>Locate Node</source>
         <translation>ノードの検索</translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="652"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="659"/>
         <source>Pin To Quick Access</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="664"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="671"/>
         <source>Move One Split Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="676"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="683"/>
         <source>Move One Split Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="688"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="695"/>
         <source>Move One Split Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../widgets/viewsplit.cpp" line="700"/>
+        <location filename="../../../widgets/viewsplit.cpp" line="707"/>
         <source>Move One Split Down</source>
         <translation type="unfinished"></translation>
     </message>

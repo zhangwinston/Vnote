@@ -10,26 +10,34 @@ on:
   workflow_dispatch:
 
 env:
-    VNOTE_VER: 3.13.1
+    VNOTE_VER: 3.14.0
 
 jobs:
   build:
     name: ${{ matrix.config.name }}
-    runs-on: windows-2016
+    runs-on: windows-2019
     timeout-minutes: 120
 
     strategy:
       matrix:
         config:
           - {
-            name: "Build On Win64",
+            name: "Build On Win64 Qt 5.12",
             arch: win64_msvc2017_64,
-            platform: x64
+            platform: x64,
+            qt: 5.12.11
           }
           - {
-            name: "Build On Win32",
+            name: "Build On Win32 Qt 5.12",
             arch: win32_msvc2017,
-            platform: x86
+            platform: x86,
+            qt: 5.12.11
+          }
+          - {
+            name: "Build On Win64 Qt 5.15",
+            arch: win64_msvc2019_64,
+            platform: x64,
+            qt: 5.15.2
           }
 
     steps:
@@ -55,7 +63,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: 5.12.11
+          version: ${{matrix.config.qt}}
           target: desktop
           arch: ${{matrix.config.arch}}
           modules: qtwebengine
@@ -76,7 +84,7 @@ jobs:
       - name: Configure and Build Project
         shell: cmd
         run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.config.platform}}
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.config.platform}}
           qmake -r -spec win32-msvc CONFIG-=debug CONFIG+=release %GITHUB_WORKSPACE%\vnote.pro
           nmake
         working-directory: ${{runner.workspace}}/build
@@ -85,7 +93,7 @@ jobs:
         shell: cmd
         run: |
           mkdir "%DISTRIB_PATH%"
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.config.platform}}
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.config.platform}}
           windeployqt.exe --dir "%DISTRIB_PATH%" .\src\release\vnote.exe
           copy .\src\release\vnote.exe "%DISTRIB_PATH%\vnote.exe"
           copy .\src\release\vnote_extra.rcc "%DISTRIB_PATH%\vnote_extra.rcc"
@@ -100,7 +108,7 @@ jobs:
           copy "%GITHUB_WORKSPACE%\COPYING.LESSER" "%DISTRIB_PATH%\COPYING.LESSER"
           echo %GITHUB_SHA% > "%DISTRIB_PATH%\commit"
           del /F /Q "%DISTRIB_PATH%\translations\qt_*.qm"
-          7z a vnote-win-${{matrix.config.platform}}.zip "%DISTRIB_PATH%"
+          7z a vnote-win-${{matrix.config.platform}}-qt${{matrix.config.qt}}.zip "%DISTRIB_PATH%"
         working-directory: ${{runner.workspace}}/build
         env:
           DISTRIB_PATH: ${{runner.workspace}}/build/distrib/vnote
@@ -108,7 +116,7 @@ jobs:
       - name: Archive Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: vnote-win-${{matrix.config.platform}}_v${{env.VNOTE_VER}}
+          name: vnote-win-${{matrix.config.platform}}-qt${{matrix.config.qt}}_v${{env.VNOTE_VER}}
           path: ${{env.DISTRIB_PATH}}
         env:
           DISTRIB_PATH: ${{runner.workspace}}/build/distrib/vnote
@@ -125,6 +133,6 @@ jobs:
         uses: johnwbyrd/update-release@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{runner.workspace}}/build/vnote-win-${{matrix.config.platform}}.zip
+          files: ${{runner.workspace}}/build/vnote-win-${{matrix.config.platform}}-qt${{matrix.config.qt}}.zip
           release: Continuous Build
           tag: continuous-build

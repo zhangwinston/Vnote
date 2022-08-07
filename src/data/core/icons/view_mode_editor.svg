@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<path d="M423.8,426.8V86.6H258.3v340.3H423.8z M423,55.9c9.8,0,18.4,4.8,25.8,14.4S460,91,460,103.6v307.5
-	c0,12.6-3.7,23.7-11.2,33.3c-7.5,9.6-16.1,14.4-25.8,14.4H92c-9.8,0-18.4-4.8-25.8-14.4c-7.5-9.6-11.2-20.7-11.2-33.3V103.6
-	c0-12.6,3.7-23.7,11.2-33.3S82.3,55.9,92,55.9C92,55.9,423,55.9,423,55.9z M276.4,315.4h129.3v35.5H276.4V315.4z M276.4,197.7h129.3
-	v35.5H276.4V197.7z M276.4,256.5h129.3v35.5H276.4V256.5z" fill="#000"/>
-</svg>
+<?xml version="1.0" encoding="UTF-8"?><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" stroke="#000000" stroke-width="4" stroke-linejoin="round"/><path d="M6 17H42" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 42V17" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
