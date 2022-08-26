@@ -241,14 +241,17 @@ ViewSplit *ViewArea::createViewSplit(QWidget *p_parent, ID p_viewSplitId)
     connect(split, &ViewSplit::viewWindowCloseRequested,
             this, [this](ViewWindow *p_win) {
                 closeViewWindow(p_win, false, true);
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::verticalSplitRequested,
             this, [this](ViewSplit *p_split) {
                 splitViewSplit(p_split, SplitType::Vertical);
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::horizontalSplitRequested,
             this, [this](ViewSplit *p_split) {
                 splitViewSplit(p_split, SplitType::Horizontal);
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::maximizeSplitRequested,
             this, &ViewArea::maximizeViewSplit);
@@ -257,16 +260,22 @@ ViewSplit *ViewArea::createViewSplit(QWidget *p_parent, ID p_viewSplitId)
     connect(split, &ViewSplit::removeSplitRequested,
             this, [this](ViewSplit *p_split) {
                 removeViewSplit(p_split, false);
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::removeSplitAndWorkspaceRequested,
             this, [this](ViewSplit *p_split) {
                 removeViewSplit(p_split, true);
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::newWorkspaceRequested,
-            this, &ViewArea::newWorkspaceInViewSplit);
+            this, [this](ViewSplit *p_split) {
+                newWorkspaceInViewSplit(p_split);
+                emit windowsChanged();
+            });
     connect(split, &ViewSplit::removeWorkspaceRequested,
             this, [this](ViewSplit *p_split) {
                 removeWorkspaceInViewSplit(p_split, true);
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::focused,
             this, [this](ViewSplit *p_split) {
@@ -288,9 +297,13 @@ ViewSplit *ViewArea::createViewSplit(QWidget *p_parent, ID p_viewSplitId)
                         p_win->setStatusWidgetVisible(true);
                     }
                 }
+                emit windowsChanged();
             });
     connect(split, &ViewSplit::moveViewWindowOneSplitRequested,
-            this, &ViewArea::moveViewWindowOneSplit);
+            this, [this](ViewSplit *p_split, ViewWindow *p_win, Direction p_direction) {
+                moveViewWindowOneSplit(p_split, p_win, p_direction);
+                emit windowsChanged();
+            });
     return split;
 }
 
@@ -760,7 +773,7 @@ bool ViewArea::removeWorkspaceInViewSplit(ViewSplit *p_split, bool p_insertNew)
 {
     // Close all the ViewWindows.
     setCurrentViewSplit(p_split, true);
-    auto wins = getAllViewWindows(p_split);
+    auto wins = p_split->getAllViewWindows();
     for (const auto win : wins) {
         if (!closeViewWindow(win, false, false)) {
             return false;
@@ -1202,11 +1215,9 @@ QVector<ViewWindow *> ViewArea::getAllViewWindows(ViewSplit *p_split, const View
     return wins;
 }
 
-QVector<ViewWindow *> ViewArea::getAllViewWindows(ViewSplit *p_split) const
+const QVector<ViewSplit *>& ViewArea::getAllViewSplits() const
 {
-   return getAllViewWindows(p_split, [](ViewWindow *) {
-              return true;
-          });
+    return m_splits;
 }
 
 QList<Buffer *> ViewArea::getAllBuffersInViewSplits() const
@@ -1214,7 +1225,7 @@ QList<Buffer *> ViewArea::getAllBuffersInViewSplits() const
     QSet<Buffer *> bufferSet;
 
     for (auto split : m_splits) {
-        auto wins = getAllViewWindows(split);
+        auto wins = split->getAllViewWindows();
         for (auto win : wins) {
             bufferSet.insert(win->getBuffer());
         }
@@ -1589,4 +1600,24 @@ void ViewArea::closeFile(const QString &p_filePath, const QSharedPointer<Event> 
 
     p_event->m_response = done;
     p_event->m_handled = !done;
+}
+
+void ViewArea::setCurrentViewWindow(ID p_splitId, int p_windowIndex)
+{
+    auto split = findSplitById(p_splitId);
+    if (split) {
+        setCurrentViewSplit(split, true);
+        split->setCurrentViewWindow(p_windowIndex);
+    }
+}
+
+ViewSplit *ViewArea::findSplitById(ID p_splitId) const
+{
+    for (auto split : m_splits) {
+        if (split->getId() == p_splitId) {
+            return split;
+        }
+    }
+
+    return nullptr;
 }
