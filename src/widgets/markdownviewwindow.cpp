@@ -273,6 +273,7 @@ void MarkdownViewWindow::setupToolBar()
     addAction(toolBar, ViewWindowToolBarHelper::EditReadDiscard);
     addAction(toolBar, ViewWindowToolBarHelper::Save);
     addAction(toolBar, ViewWindowToolBarHelper::ViewMode);
+    addAction(toolBar, ViewWindowToolBarHelper::WordCount);
 
     toolBar->addSeparator();
 
@@ -1487,5 +1488,42 @@ void MarkdownViewWindow::updateEditorFromConfig()
         vte::Key navigationModeKey(keyStr);
         m_editor->setNavigationModeKeyToSkip(navigationModeKey.m_key, navigationModeKey.m_modifiers,withLeaderKey);
         //add by zhangyw navigationMode skip extra keys
+    }
+}
+
+void MarkdownViewWindow::fetchWordCountInfo(const std::function<void(const WordCountInfo &)> &p_callback) const
+{
+    auto text = selectedText();
+    if (!text.isEmpty()) {
+        auto info = TextViewWindowHelper::calculateWordCountInfo(text);
+        info.m_isSelection = true;
+        p_callback(info);
+        return;
+    }
+
+    switch (m_mode) {
+    case ViewWindowMode::Read:
+    {
+        Q_ASSERT(m_viewer);
+        m_viewer->saveContent([p_callback](const QString &content) {
+            auto info = TextViewWindowHelper::calculateWordCountInfo(content);
+            info.m_isSelection = false;
+            p_callback(info);
+        });
+        break;
+    }
+
+    case ViewWindowMode::Edit:
+    {
+        Q_ASSERT(m_editor);
+        auto info = TextViewWindowHelper::calculateWordCountInfo(m_editor->getText());
+        info.m_isSelection = false;
+        p_callback(info);
+        break;
+    }
+
+    default:
+        p_callback(WordCountInfo());
+        break;
     }
 }

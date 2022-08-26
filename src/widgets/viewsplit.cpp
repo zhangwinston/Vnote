@@ -190,7 +190,7 @@ bool ViewSplit::eventFilter(QObject *p_object, QEvent *p_event)
                 return true;
             }
         }
-//add by zhangyw
+//add by zhangyw for new note quickly
         if(p_event->type()==QEvent::MouseButtonDblClick &&p_event->type()==QEvent::MouseButtonDblClick){
              auto mouseEve = static_cast<QMouseEvent *>(p_event);
             if (mouseEve->button() == Qt::LeftButton) {
@@ -201,7 +201,7 @@ bool ViewSplit::eventFilter(QObject *p_object, QEvent *p_event)
                 }
             }
         }
-//add by zhangyw
+//add by zhangyw for new note quickly
     }
 
     return QTabWidget::eventFilter(p_object, p_event);

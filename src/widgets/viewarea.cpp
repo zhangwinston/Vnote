@@ -502,10 +502,10 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     auto session = p_win->saveSession();
     Notebook *notebook = nullptr;
 
-    //add by zhangyw
+    //add by zhangyw for rename node
     Node *node= nullptr;
     QString firstline="";
-    //add by zhangyw
+    //add by zhangyw for rename node
 
     if (p_win->getBuffer()) {
         //auto node = p_win->getBuffer()->getNode();
@@ -513,7 +513,7 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
         if (node) {
             notebook = node->getNotebook();
 
-            //add by zhangyw
+            //add by zhangyw for rename note from content
             auto content=p_win->getBuffer()->getContent();
             QTextStream stream(&content);
 
@@ -523,7 +523,7 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
                 firstline=stream.readLine(100);
                 i++;
             }
-            //add by zhangyw
+            //add by zhangyw for rename note from content
         }
     }
 

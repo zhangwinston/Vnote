@@ -332,10 +332,10 @@ void MainWindow::setupNotebookExplorer()
             m_notebookExplorer, &NotebookExplorer::newFolder);
     connect(&VNoteX::getInst(), &VNoteX::newNoteRequested,
             m_notebookExplorer, &NotebookExplorer::newNote);
-//add by zhangyw
+//add by zhangyw for shortcut of new note quickly
     connect(&VNoteX::getInst(), &VNoteX::newNoteQuicklyRequested,
             m_notebookExplorer, &NotebookExplorer::newNoteQuickly);
-//add by zhangyw
+//add by zhangyw for shortcut of new note quickly
 
     connect(&VNoteX::getInst(), &VNoteX::importFileRequested,
             m_notebookExplorer, &NotebookExplorer::importFile);
