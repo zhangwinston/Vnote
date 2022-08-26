@@ -2597,7 +2597,7 @@ Remove them from the configuration?</source>
     <message>
         <location filename="../../../widgets/dialogs/settings/markdowneditorpage.cpp" line="392"/>
         <source>Override editor font family of theme</source>
-        <translation>覆盖主题编辑器的字体</translation>
+        <translation>覆盖主题中的编辑器字体</translation>
     </message>
     <message>
         <location filename="../../../widgets/dialogs/settings/markdowneditorpage.cpp" line="414"/>
@@ -3251,22 +3251,22 @@ Remove them from the configuration?</source>
     <message>
         <location filename="../../../widgets/dialogs/settings/notemanagementpage.cpp" line="53"/>
         <source>Default mode when opening notes</source>
-        <translation type="unfinished"></translation>
+        <translation>笔记的默认打开模式</translation>
     </message>
     <message>
         <location filename="../../../widgets/dialogs/settings/notemanagementpage.cpp" line="55"/>
         <source>Read</source>
-        <translation type="unfinished">阅读</translation>
+        <translation>阅读</translation>
     </message>
     <message>
         <location filename="../../../widgets/dialogs/settings/notemanagementpage.cpp" line="56"/>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../../../widgets/dialogs/settings/notemanagementpage.cpp" line="58"/>
         <source>Default open mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>默认打开模式:</translation>
     </message>
     <message>
         <location filename="../../../widgets/dialogs/settings/notemanagementpage.cpp" line="110"/>
@@ -3660,17 +3660,17 @@ Remove them from the configuration?</source>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1333"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished">编辑(&amp;E)</translation>
+        <translation>编辑(&amp;E)</translation>
     </message>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1333"/>
         <source>&amp;Read</source>
-        <translation type="unfinished">阅读(&amp;R)</translation>
+        <translation>阅读(&amp;R)</translation>
     </message>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1365"/>
         <source>E&amp;xpand All	*</source>
-        <translation type="unfinished"></translation>
+        <translation>逐层展开(&amp;X)	*</translation>
     </message>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="2405"/>
@@ -3720,7 +3720,7 @@ Remove them from the configuration?</source>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1249"/>
         <source>Remo&amp;ve From Index</source>
-        <translation type="unfinished"></translation>
+        <translation>从索引中移除(&amp;V)</translation>
     </message>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1257"/>
@@ -3740,7 +3740,7 @@ Remove them from the configuration?</source>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1115"/>
         <source>note</source>
-        <translation type="unfinished">笔记</translation>
+        <translation>笔记</translation>
     </message>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1274"/>
@@ -3954,7 +3954,7 @@ Remove them from the configuration?</source>
 <context>
     <name>vnotex::NotebookSelector</name>
     <message>
-        <location filename="../../../widgets/notebookselector.cpp" line="85"/>
+        <location filename="../../../widgets/notebookselector.cpp" line="112"/>
         <source>Notebook: %1
 Root folder: %2
 Description: %3</source>
@@ -5287,7 +5287,7 @@ Description: %3</source>
     <message>
         <location filename="../../../widgets/viewsplit.cpp" line="131"/>
         <source>Open Windows</source>
-        <translation type="unfinished">已打开窗口</translation>
+        <translation>已打开窗口</translation>
     </message>
     <message>
         <location filename="../../../widgets/viewsplit.cpp" line="155"/>
@@ -5824,7 +5824,7 @@ Backup file last modified time: %2</source>
     <message>
         <location filename="../../../widgets/viewwindowtoolbarhelper.cpp" line="428"/>
         <source>Word Count</source>
-        <translation type="unfinished"></translation>
+        <translation>字词计数</translation>
     </message>
     <message>
         <location filename="../../../widgets/textviewwindowhelper.h" line="234"/>
@@ -5865,22 +5865,22 @@ Backup file last modified time: %2</source>
     <message>
         <location filename="../../../widgets/wordcountpopup.cpp" line="17"/>
         <source>Selection Area</source>
-        <translation type="unfinished"></translation>
+        <translation>选择区域</translation>
     </message>
     <message>
         <location filename="../../../widgets/wordcountpopup.cpp" line="24"/>
         <source>Words</source>
-        <translation type="unfinished"></translation>
+        <translation>词</translation>
     </message>
     <message>
         <location filename="../../../widgets/wordcountpopup.cpp" line="28"/>
         <source>Characters (no spaces)</source>
-        <translation type="unfinished"></translation>
+        <translation>字(无空格)</translation>
     </message>
     <message>
         <location filename="../../../widgets/wordcountpopup.cpp" line="32"/>
         <source>Characters (with spaces)</source>
-        <translation type="unfinished"></translation>
+        <translation>字(有空格)</translation>
     </message>
 </context>
 </TS>

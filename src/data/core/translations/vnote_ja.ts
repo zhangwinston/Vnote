@@ -3751,7 +3751,7 @@ Remove them from the configuration?</source>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1115"/>
         <source>note</source>
-        <translation type="unfinished">ノート</translation>
+        <translation>ノート</translation>
     </message>
     <message>
         <location filename="../../../widgets/notebooknodeexplorer.cpp" line="1152"/>
@@ -3894,7 +3894,7 @@ Remove them from the configuration?</source>
 <context>
     <name>vnotex::NotebookSelector</name>
     <message>
-        <location filename="../../../widgets/notebookselector.cpp" line="85"/>
+        <location filename="../../../widgets/notebookselector.cpp" line="112"/>
         <source>Notebook: %1
 Root folder: %2
 Description: %3</source>
@@ -5186,7 +5186,7 @@ Description: %3</source>
     <message>
         <location filename="../../../widgets/viewarea.cpp" line="554"/>
         <source>note</source>
-        <translation type="unfinished">ノート</translation>
+        <translation>ノート</translation>
     </message>
     <message>
         <location filename="../../../widgets/viewarea.cpp" line="1012"/>
