@@ -1812,12 +1812,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../main.cpp" line="129"/>
+        <location filename="../../../main.cpp" line="134"/>
         <source>%1 failed to start.</source>
         <translation>%1を開始できませんでした。</translation>
     </message>
     <message>
-        <location filename="../../../main.cpp" line="130"/>
+        <location filename="../../../main.cpp" line="135"/>
         <source>Failed to initialize configuration manager. Please check if all the files are intact or reinstall the application.</source>
         <translation>設定マネージャの初期化に失敗しました。すべてのファイルが正常かどうかを確認するか、アプリケーションを再インストールしてください。</translation>
     </message>

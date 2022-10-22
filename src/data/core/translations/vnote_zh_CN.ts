@@ -2129,12 +2129,12 @@ Remove them from the configuration?</source>
         <translation>关于Qt</translation>
     </message>
     <message>
-        <location filename="../../../main.cpp" line="129"/>
+        <location filename="../../../main.cpp" line="134"/>
         <source>%1 failed to start.</source>
         <translation>%1无法启动。</translation>
     </message>
     <message>
-        <location filename="../../../main.cpp" line="130"/>
+        <location filename="../../../main.cpp" line="135"/>
         <source>Failed to initialize configuration manager. Please check if all the files are intact or reinstall the application.</source>
         <translation>无法初始化配置管理器。请检查全部文件的完整性或者重新安装应用。</translation>
     </message>
