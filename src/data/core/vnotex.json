@@ -3,7 +3,7 @@
     "metadata" : {
         "//comment": "When releasing new version, please go through the following configs to check if override is needed.",
         "//Comment": "markdown_editor#override_viewer_resource",
-        "version" : "3.15.0"
+        "version" : "3.15.1"
     },
     "core" : {
         "theme" : "pure",
@@ -220,10 +220,12 @@
                 "ApplySnippet" : "Ctrl+G, I",
                 "Tag" : "Ctrl+G, B",
                 "Attachment" : "",
+                "AlternateViewMode" : "Ctrl+G, V",
                 "WordCount" : "",
                 "Debug" : "F12",
                 "Print" : "",
-                "ClearHighlights" : "Ctrl+G, Space"
+                "ClearHighlights" : "Ctrl+G, Space",
+                "ParseToMarkdownAndPaste" : "Ctrl+G, Ctrl+P"
             },
             "spell_check_auto_detect_language" : false,
             "spell_check_default_dictionary" : "en_US",
@@ -490,7 +492,9 @@
         "outline_section_number_enabled" : false,
         "//comment" : "Default find options in FindAndReplace",
         "find_and_replace_options" : 16,
-        "//comment" : "View order of the node explorer (NotebookNodeExplorer::ViewOrder)",
+        "//comment" : "View order of the notebook selector (enum ViewOrder)",
+        "notebook_selector_view_order" : 0,
+        "//comment" : "View order of the node explorer (enum ViewOrder)",
         "node_explorer_view_order" : 0,
         "node_explorer_external_files_visible" : true,
         "node_explorer_auto_import_external_files_enabled" : true,

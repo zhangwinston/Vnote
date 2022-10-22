@@ -1045,6 +1045,8 @@ void MarkdownEditor::handleContextMenuEvent(QContextMenuEvent *p_event, bool *p_
         if (mimeData->hasHtml()) {
             // Parse to Markdown and Paste.
             auto parsePasteAct = new QAction(tr("Parse to Markdown and Paste"), menu);
+            WidgetUtils::addActionShortcutText(parsePasteAct,
+                                               editorConfig.getShortcut(EditorConfig::Shortcut::ParseToMarkdownAndPaste));
             connect(parsePasteAct, &QAction::triggered,
                     this, &MarkdownEditor::parseToMarkdownAndPaste);
             WidgetUtils::insertActionAfter(menu, altPasteAct, parsePasteAct);
@@ -1093,11 +1095,24 @@ void MarkdownEditor::setupShortcuts()
 {
     const auto &editorConfig = ConfigMgr::getInst().getEditorConfig();
 
-    auto shortcut = WidgetUtils::createShortcut(editorConfig.getShortcut(EditorConfig::Shortcut::AltPaste),
-                                                this);
-    if (shortcut) {
-        connect(shortcut, &QShortcut::activated,
-                this, &MarkdownEditor::altPaste);
+    // Alt paste.
+    {
+        auto shortcut = WidgetUtils::createShortcut(editorConfig.getShortcut(EditorConfig::Shortcut::AltPaste),
+                                                    this);
+        if (shortcut) {
+            connect(shortcut, &QShortcut::activated,
+                    this, &MarkdownEditor::altPaste);
+        }
+    }
+
+    // Parse to Markdown and Paste.
+    {
+        auto shortcut = WidgetUtils::createShortcut(editorConfig.getShortcut(EditorConfig::Shortcut::ParseToMarkdownAndPaste),
+                                                    this);
+        if (shortcut) {
+            connect(shortcut, &QShortcut::activated,
+                    this, &MarkdownEditor::parseToMarkdownAndPaste);
+        }
     }
 }
 

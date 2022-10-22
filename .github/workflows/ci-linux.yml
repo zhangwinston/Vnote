@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-    VNOTE_VER: 3.15.0
+    VNOTE_VER: 3.15.1
 
 jobs:
   build-linux:
@@ -147,3 +147,14 @@ jobs:
           files: ${{runner.workspace}}/build/vnote-linux-x64.AppImage
           release: Continuous Build
           tag: continuous-build
+
+      - name: Release
+        if: github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, '[Release]')
+        uses: ncipollo/release-action@v1.11.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: ${{runner.workspace}}/build/vnote-linux-x64_v${{env.VNOTE_VER}}.AppImage
+          commit: master
+          tag: v${{env.VNOTE_VER}}
+          allowUpdates: true
+          draft: true
