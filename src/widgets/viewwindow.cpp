@@ -1408,3 +1408,8 @@ void ViewWindow::print()
 void ViewWindow::clearHighlights()
 {
 }
+
+void ViewWindow::setBufferRevisionAfterInvalidation(int p_bufferRevision)
+{
+    m_bufferRevision = p_bufferRevision;
+}
