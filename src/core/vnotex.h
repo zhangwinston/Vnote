@@ -80,6 +80,8 @@ namespace vnotex
         void newNoteRequested();
 
         void newNoteQuicklyRequested();
+        // Requested to new a quick note (maybe in current folder).
+        void newQuickNoteRequested();
 
         // Requested to new a folder in current notebook.
         void newFolderRequested();

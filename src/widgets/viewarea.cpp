@@ -14,9 +14,6 @@
 #include <QHash>
 #include <QTabBar>
 
-#include "viewwindow.h"
-#include "mainwindow.h"
-#include "propertydefs.h"
 #include <utils/widgetutils.h>
 #include <utils/docsutils.h>
 #include <utils/urldragdroputils.h>
@@ -35,6 +32,12 @@
 #include "editors/graphvizhelper.h"
 #include <core/historymgr.h>
 #include "dialogs/notepropertiesdialog.h"
+#include <widgets/dialogs/selectdialog.h>
+
+#include "viewwindow.h"
+#include "mainwindow.h"
+#include "propertydefs.h"
+#include "messageboxhelper.h"
 
 using namespace vnotex;
 
@@ -551,7 +554,7 @@ bool ViewArea::closeViewWindow(ViewWindow *p_win, bool p_force, bool p_removeSpl
     }
 
     //add by zhangyw for rename node
-        if(node->getName().startsWith(tr("note")))
+        if(node->getName().startsWith(tr("note"))&&node->getName().endsWith(tr(".md")))
         {
             QString preFileName=firstline.replace(QRegExp("[#\?\\*:/,.]")," ").simplified()+".md";
             if(preFileName.length()<=3){ //contain ".md"

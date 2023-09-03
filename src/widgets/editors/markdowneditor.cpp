@@ -387,7 +387,7 @@ bool MarkdownEditor::insertImageToBufferFromLocalFile(const QString &p_title,
             ba = FileUtils::readFile(p_srcImagePath);
         } catch (Exception &e) {
             MessageBoxHelper::notify(MessageBoxHelper::Warning,
-                                     QString("Failed to read local image file (%1) (%2).").arg(p_srcImagePath, e.what()),
+                                     tr("Failed to read local image file (%1) (%2).").arg(p_srcImagePath, e.what()),
                                      this);
             return false;
         }
@@ -400,7 +400,7 @@ bool MarkdownEditor::insertImageToBufferFromLocalFile(const QString &p_title,
             destFilePath = m_buffer->insertImage(p_srcImagePath, destFileName);
         } catch (Exception &e) {
             MessageBoxHelper::notify(MessageBoxHelper::Warning,
-                                     QString("Failed to insert image from local file (%1) (%2).").arg(p_srcImagePath, e.what()),
+                                     tr("Failed to insert image from local file (%1) (%2).").arg(p_srcImagePath, e.what()),
                                      this);
             return false;
         }
@@ -443,7 +443,7 @@ bool MarkdownEditor::insertImageToBufferFromData(const QString &p_title,
             destFilePath = m_buffer->insertImage(p_image, destFileName);
         } catch (Exception &e) {
             MessageBoxHelper::notify(MessageBoxHelper::Warning,
-                                     QString("Failed to insert image from data (%1).").arg(e.what()),
+                                     tr("Failed to insert image from data (%1).").arg(e.what()),
                                      this);
             return false;
         }
@@ -542,6 +542,11 @@ void MarkdownEditor::handleInsertFromMimeData(const QMimeData *p_source, bool *p
         *p_handled = true;
         return;
     }
+
+    if (processMultipleUrlsFromMimeData(p_source)) {
+        *p_handled = true;
+        return;
+    }
 }
 
 bool MarkdownEditor::processHtmlFromMimeData(const QMimeData *p_source)
@@ -623,9 +628,13 @@ bool MarkdownEditor::processImageFromMimeData(const QMimeData *p_source)
 
 bool MarkdownEditor::processUrlFromMimeData(const QMimeData *p_source)
 {
+    const auto urls = p_source->urls();
+    if (urls.size() > 1) {
+        return false;
+    }
+
     QUrl url;
     if (p_source->hasUrls()) {
-        const auto urls = p_source->urls();
         if (urls.size() == 1) {
             url = urls[0];
         }
@@ -794,6 +803,68 @@ bool MarkdownEditor::processUrlFromMimeData(const QMimeData *p_source)
     return false;
 }
 
+bool MarkdownEditor::processMultipleUrlsFromMimeData(const QMimeData *p_source) {
+    const auto urls = p_source->urls();
+    if (urls.size() <= 1) {
+        return false;
+    }
+
+    bool isProcessed = false;
+    // Judgment if all QMimeData are images.
+    bool isAllImage = true;
+    for (const QUrl &url : urls) {
+        if (!PathUtils::isImageUrl(PathUtils::urlToPath(url))) {
+            isAllImage = false;
+            break;
+        }
+    }
+
+    SelectDialog dialog(tr("Insert From Clipboard (%n items)", "", urls.size()), this);
+    if (isAllImage) {
+        dialog.addSelection(tr("Insert As Image"), 0);
+    }
+    if (m_buffer->isAttachmentSupported()) {
+        dialog.addSelection(tr("Attach And Insert Link"), 1);
+    }
+    dialog.setMinimumWidth(400);
+
+    if (dialog.exec() == QDialog::Accepted) {
+        switch (dialog.getSelection()) {
+        case 0:
+        {
+            // Insert As Image.
+            for (const QUrl &url : urls) {
+                insertImageFromUrl(PathUtils::urlToPath(url), true);
+                m_textEdit->insertPlainText("\n\n");
+            }
+            isProcessed = true;
+            break;
+        }
+        case 1:
+        {
+            // Attach And Insert Link.
+            QStringList fileList;
+            for (const QUrl &url : urls) {
+                fileList << url.toLocalFile();
+            }
+            fileList = m_buffer->addAttachment(QString(), fileList);
+            enterInsertModeIfApplicable();
+            for (int i = 0; i < fileList.length(); ++i) {
+                vte::MarkdownUtils::typeLink(
+                            m_textEdit, QFileInfo(fileList[i]).fileName(),
+                            getRelativeLink(fileList[i]));
+
+                m_textEdit->insertPlainText("\n\n");
+            }
+            isProcessed = true;
+            break;
+        }
+        }
+    }
+
+    return isProcessed;
+}
+
 void MarkdownEditor::insertImageFromMimeData(const QMimeData *p_source)
 {
     QImage image = qvariant_cast<QImage>(p_source->imageData());
@@ -812,7 +883,7 @@ void MarkdownEditor::insertImageFromMimeData(const QMimeData *p_source)
     }
 }
 
-void MarkdownEditor::insertImageFromUrl(const QString &p_url)
+void MarkdownEditor::insertImageFromUrl(const QString &p_url, bool p_quiet)
 {
     //zhangyw add download image from special site
     auto cursor = m_textEdit->textCursor();
@@ -841,6 +912,29 @@ void MarkdownEditor::insertImageFromUrl(const QString &p_url)
                                             dialog.getImageAltText(),
                                             image,
                                             dialog.getScaledWidth());
+            }
+        }
+    }
+    if (p_quiet) {
+        insertImageToBufferFromLocalFile("", "", p_url, 0);
+    } else {
+        ImageInsertDialog dialog(tr("Insert Image From URL"), "", "", "", false, this);
+        dialog.setImagePath(p_url);
+        if (dialog.exec() == QDialog::Accepted) {
+            enterInsertModeIfApplicable();
+            if (dialog.getImageSource() == ImageInsertDialog::Source::LocalFile) {
+                insertImageToBufferFromLocalFile(dialog.getImageTitle(),
+                                                 dialog.getImageAltText(),
+                                                 dialog.getImagePath(),
+                                                 dialog.getScaledWidth());
+            } else {
+                auto image = dialog.getImage();
+                if (!image.isNull()) {
+                    insertImageToBufferFromData(dialog.getImageTitle(),
+                                                dialog.getImageAltText(),
+                                                image,
+                                                dialog.getScaledWidth());
+                }
             }
         }
     }
@@ -1437,7 +1531,7 @@ QString MarkdownEditor::saveToImageHost(const QByteArray &p_imageData, const QSt
 
     if (targetUrl.isEmpty()) {
         MessageBoxHelper::notify(MessageBoxHelper::Warning,
-                                 QString("Failed to upload image to image host (%1) as (%2).").arg(m_imageHost->getName(), destPath),
+                                 tr("Failed to upload image to image host (%1) as (%2).").arg(m_imageHost->getName(), destPath),
                                  QString(),
                                  errMsg,
                                  this);
@@ -1518,7 +1612,7 @@ void MarkdownEditor::uploadImagesToImageHost()
             ba = FileUtils::readFile(link.m_path);
         } catch (Exception &e) {
             MessageBoxHelper::notify(MessageBoxHelper::Warning,
-                                     QString("Failed to read local image file (%1) (%2).").arg(link.m_path, e.what()),
+                                     tr("Failed to read local image file (%1) (%2).").arg(link.m_path, e.what()),
                                      this);
             continue;
         }
@@ -1536,7 +1630,7 @@ void MarkdownEditor::uploadImagesToImageHost()
 
         if (targetUrl.isEmpty()) {
             MessageBoxHelper::notify(MessageBoxHelper::Warning,
-                                     QString("Failed to upload image to image host (%1) as (%2).").arg(host->getName(), destPath),
+                                     tr("Failed to upload image to image host (%1) as (%2).").arg(host->getName(), destPath),
                                      QString(),
                                      errMsg,
                                      this);

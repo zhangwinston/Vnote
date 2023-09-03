@@ -52,6 +52,8 @@ namespace vnotex
         void newNote();
         void newNoteQuickly();
 
+        void newQuickNote();
+
         void importFile();
 
         void importFolder();

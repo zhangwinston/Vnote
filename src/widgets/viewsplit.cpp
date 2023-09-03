@@ -25,6 +25,7 @@
 #include <core/coreconfig.h>
 #include "propertydefs.h"
 #include "fileopenparameters.h"
+#include "sessionconfig.h"
 
 #include "mainwindow.h"
 #include "notebookexplorer.h"
@@ -84,7 +85,13 @@ void ViewSplit::setupUI()
                 closeTab(p_idx);
             });
     connect(this, &QTabWidget::tabBarDoubleClicked,
-            this, &ViewSplit::closeTab);
+            this, [this](int p_idx) {
+                if (p_idx == -1) {
+                    emit VNoteX::getInst().newQuickNoteRequested();
+                } else {
+                    closeTab(p_idx);
+                }
+            });
     connect(this, &QTabWidget::tabBarClicked,
             this, [this](int p_idx) {
                 Q_UNUSED(p_idx);

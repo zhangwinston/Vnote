@@ -23,6 +23,7 @@ namespace vnotex
             Settings,
             NewNote,
             NewNoteQuickly,
+            NewQuickNote,
             NewFolder,
             CloseTab,
             CloseAllTabs,

@@ -1113,7 +1113,7 @@ QAction *NotebookNodeExplorer::createAction(Action p_act, QObject *p_parent, boo
             int ret = QDialog::Rejected;
             QString preFileName="";
             if (node->hasContent()) {
-                if(node->getName().startsWith(tr("note")))
+                if(node->getName().startsWith(tr("note"))&&node->getName().endsWith(tr(".md")))
                 {
                     QString firstline="";
                     QFile file(node->fetchAbsolutePath());

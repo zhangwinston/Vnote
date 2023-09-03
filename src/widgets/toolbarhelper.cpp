@@ -142,6 +142,15 @@ QToolBar *ToolBarHelper::setupFileToolBar(MainWindow *p_win, QToolBar *p_toolBar
             }
         }
         //add by zhangyw when you want create from dialog normally, select template etc
+        // New quick note.
+        auto newQuickNoteAct = newMenu->addAction(generateIcon("new_note.svg"),
+                                             MainWindow::tr("New Quick Note"),
+                                             newMenu,
+                                             []() {
+                                                 emit VNoteX::getInst().newQuickNoteRequested();
+                                             });
+        WidgetUtils::addActionShortcut(newQuickNoteAct,
+                                       coreConfig.getShortcut(CoreConfig::Shortcut::NewQuickNote));
 
         // New folder.
         auto newFolderAct = newMenu->addAction(generateIcon("new_folder.svg"),
